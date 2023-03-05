@@ -12,7 +12,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @AllArgsConstructor
 public class ListenersRegistrations implements BeanPostProcessor {
     private final PreUpdateListener preUpdateListener;
@@ -21,7 +21,7 @@ public class ListenersRegistrations implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if(bean instanceof LocalContainerEntityManagerFactoryBean){
+       /* if(bean instanceof LocalContainerEntityManagerFactoryBean){
             LocalContainerEntityManagerFactoryBean lcemfb = (LocalContainerEntityManagerFactoryBean)  bean;
             SessionFactoryImpl sessionFactory = (SessionFactoryImpl) lcemfb.getNativeEntityManagerFactory();
             EventListenerRegistry registry = sessionFactory.getServiceRegistry().getService(EventListenerRegistry.class);
@@ -30,7 +30,7 @@ public class ListenersRegistrations implements BeanPostProcessor {
             registry.appendListeners(EventType.PRE_INSERT, preInsertListener);
             registry.appendListeners(EventType.PRE_UPDATE, preUpdateListener);
 
-        }
+        }*/
         return bean;
     }
 }
